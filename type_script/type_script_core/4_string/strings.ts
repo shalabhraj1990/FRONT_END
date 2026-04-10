@@ -7,7 +7,7 @@ console.log(s2.charAt(0));
 console.log(s2.indexOf('i'));
 console.log(s2.lastIndexOf('i'));
 
-//assignment
+//assignment 1
 var num:number = 20;
 var float:number = 3.14;
 var str:string = "success is the best revenage";
@@ -20,3 +20,30 @@ enum Days{
     saturday,
     sunday
 }
+
+//assignment 2
+//var prompt_value = prompt("Enter a numberic number !!!");
+//let number:number  = parseInt(prompt_value ?? "");
+// if (number % 2 == 0)
+// alert("Number is even")
+// else
+// alert("Number is Odd")
+
+//assignment 3
+
+var prompt_value = prompt("Enter a numberic number !!!");
+let number:number  = parseInt(prompt_value ?? "");
+let i:number = 1;
+while(i<number){
+    i++;
+   if(i % 5 === 0)
+   {
+     continue;
+
+   }
+     
+    console.log(i);
+    
+}
+
+
