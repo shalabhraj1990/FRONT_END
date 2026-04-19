@@ -56,27 +56,53 @@ function autobind(target, ctx) {
         target.apply(this);
     };
 }
+function replace(value) {
+    return function replaceDecorator(target, ctx) {
+        console.log(target);
+        console.log(ctx);
+        return (initValue) => {
+            console.log(initValue);
+            return value;
+        };
+    };
+}
+function replaceDecorator(target, ctx) {
+    console.log(target);
+    console.log(ctx);
+    return (initValue) => {
+        console.log(initValue);
+        return "Dhriti";
+    };
+}
 let Person = (() => {
     let _classDecorators = [logger];
     let _classDescriptor;
     let _classExtraInitializers = [];
     let _classThis;
     let _instanceExtraInitializers = [];
+    let _name_decorators;
+    let _name_initializers = [];
+    let _name_extraInitializers = [];
     let _greet_decorators;
     var Person = class {
         static { _classThis = this; }
         static {
             const _metadata = typeof Symbol === "function" && Symbol.metadata ? Object.create(null) : void 0;
+            _name_decorators = [replace("Sonam")];
             _greet_decorators = [autobind];
             __esDecorate(this, null, _greet_decorators, { kind: "method", name: "greet", static: false, private: false, access: { has: obj => "greet" in obj, get: obj => obj.greet }, metadata: _metadata }, null, _instanceExtraInitializers);
+            __esDecorate(null, null, _name_decorators, { kind: "field", name: "name", static: false, private: false, access: { has: obj => "name" in obj, get: obj => obj.name, set: (obj, value) => { obj.name = value; } }, metadata: _metadata }, _name_initializers, _name_extraInitializers);
             __esDecorate(null, _classDescriptor = { value: _classThis }, _classDecorators, { kind: "class", name: _classThis.name, metadata: _metadata }, null, _classExtraInitializers);
             Person = _classThis = _classDescriptor.value;
             if (_metadata) Object.defineProperty(_classThis, Symbol.metadata, { enumerable: true, configurable: true, writable: true, value: _metadata });
             __runInitializers(_classThis, _classExtraInitializers);
         }
-        name = (__runInitializers(this, _instanceExtraInitializers), "shalabh");
+        name = (__runInitializers(this, _instanceExtraInitializers), __runInitializers(this, _name_initializers, "shalabh"));
         greet() {
             console.log("hi i am " + this.name);
+        }
+        constructor() {
+            __runInitializers(this, _name_extraInitializers);
         }
     };
     return Person = _classThis;

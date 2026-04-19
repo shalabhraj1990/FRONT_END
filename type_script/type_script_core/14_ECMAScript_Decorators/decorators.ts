@@ -30,8 +30,33 @@ function autobind(
   };
 }
 
+function replace<T>(value: T) {
+  return function replaceDecorator(
+    target: undefined,
+    ctx: ClassFieldDecoratorContext,
+  ) {
+    console.log(target);
+    console.log(ctx);
+
+    return (initValue: any) => {
+      console.log(initValue);
+      return value;
+    };
+  };
+}
+function replaceDecorator(target: undefined, ctx: ClassFieldDecoratorContext) {
+  console.log(target);
+  console.log(ctx);
+
+  return (initValue: any) => {
+    console.log(initValue);
+    return "Dhriti";
+  };
+}
+
 @logger
 class Person {
+  @replace<string>("Sonam")
   name = "shalabh";
   @autobind
   greet() {
